@@ -1,0 +1,38 @@
+// can be run front end or back end; if no assertion failure, then all tests passed
+
+import * as ausHolidays from './ausHolidays.js';
+
+var today = new Date();
+var year = today.getFullYear();
+
+function testDate(date1, date2) {
+    if (date1.getTime() != date2.getTime()) {
+        throw new Error(`Test failed: ${date1} != ${date2}`);
+    }
+}
+
+// month Jan-Dec is number 0-11 
+
+testDate(ausHolidays.adjustWeekendToMonday(new Date(2026, 2, 7)), new Date(2026, 2, 9));
+testDate(ausHolidays.adjustWeekendToMonday(new Date(2026, 2, 8)), new Date(2026, 2, 9));
+testDate(ausHolidays.adjustSundayToMonday(new Date(2026, 2, 7)), new Date(2026, 2, 7));
+testDate(ausHolidays.adjustSundayToMonday(new Date(2026, 2, 8)), new Date(2026, 2, 9));
+
+// test labour day
+testDate(ausHolidays.getLabourDay(2026, "QLD"), new Date(2026, 4, 4));
+testDate(ausHolidays.getLabourDay(2029, "QLD"), new Date(2029, 4, 7));
+testDate(ausHolidays.getLabourDay(2027, "WA"), new Date(2027, 2, 1));
+testDate(ausHolidays.getLabourDay(2029, "WA"), new Date(2029, 2, 5));
+testDate(ausHolidays.getLabourDay(2026, "VIC"), new Date(2026, 2, 9));
+testDate(ausHolidays.getLabourDay(2027, "VIC"), new Date(2027, 2, 8));
+
+// test new years
+testDate(ausHolidays.getNewYearsDay(2030), new Date(2030,0,1));
+
+// test anzac day
+testDate(ausHolidays.getAnzacDay(2025, "NT"), new Date(2025, 3, 25));
+testDate(ausHolidays.getAnzacDay(2026, "QLD"), new Date(2026, 3, 25));
+testDate(ausHolidays.getAnzacDay(2026, "NT"), new Date(2026, 3, 27));
+testDate(ausHolidays.getAnzacDay(2026, "NSW"), new Date(2026, 3, 25));
+
+console.log("All tests passed")
