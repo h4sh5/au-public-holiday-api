@@ -35,4 +35,13 @@ testDate(ausHolidays.getAnzacDay(2026, "QLD"), new Date(2026, 3, 25));
 testDate(ausHolidays.getAnzacDay(2026, "NT"), new Date(2026, 3, 27));
 testDate(ausHolidays.getAnzacDay(2026, "NSW"), new Date(2026, 3, 25));
 
+// Australia Day
+testDate(ausHolidays.getAustraliaDay(2027), new Date(2027, 0, 26));
+// Easter
+testDate(ausHolidays.getEasterSunday(2025), new Date(2025, 3, 20));
+testDate(ausHolidays.getEasterSunday(2026), new Date(2026, 3, 5));
+testDate(ausHolidays.getEasterMonday(2025), new Date(2025, 3, 21));
+testDate(ausHolidays.getGoodFriday(2026), new Date(2026, 3, 3));
+testDate(ausHolidays.getGoodFriday(2028), new Date(2028, 3, 14));
+
 console.log("All tests passed")

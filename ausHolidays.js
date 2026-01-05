@@ -65,5 +65,40 @@ export function getAnzacDay(year, state) {
     return new Date(year, 3, 25);
 }
 
+export function getAustraliaDay(year) {
+    return new Date(year, 0, 26);
+}
+
+export function getEasterSunday(year) {
+    // Modified Oudin's Algorithm for Calculating the Date of Easter in the Gregorian Calendar https://web.archive.org/web/20120204044335/http://www.smart.net/~mmontes/oudin.html
+    const Y = year;
+    var C = Math.floor(Y/100);
+    var N = Y - 19*Math.floor(Y/19);
+    var K = Math.floor((C - 17)/25);
+    var I = C - Math.floor(C/4) - Math.floor((C - K)/3) + 19*N + 15;
+    I = I - 30*Math.floor((I/30));
+    I = I - Math.floor(I/28)*(1 - Math.floor(I/28)*Math.floor(29/(I + 1))*Math.floor((21 - N)/11));
+    var J = Y + Math.floor(Y/4) + I + 2 - C + Math.floor(C/4);
+    J = J - 7*Math.floor(J/7);
+    var L = I - J;
+    var month = 3 + Math.floor((L + 40)/44);
+    var day = L + 28 - 31*Math.floor(month/4);
+    var monthIndex = month - 1;
+
+    return new Date(year, monthIndex, day);
+}
+
+export function getGoodFriday(year) {
+    var date = getEasterSunday(year);
+    date.setDate(date.getDate() - 2);
+    return date;
+}
+
+export function getEasterMonday(year) {
+    var date = getEasterSunday(year);
+    date.setDate(date.getDate() + 1);
+    return date;
+}
+
 
 
