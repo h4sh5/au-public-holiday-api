@@ -100,5 +100,25 @@ export function getEasterMonday(year) {
     return date;
 }
 
+// TODO xmas additional holidays logic?
+export function getChristmas(year) {
+    return adjustWeekendToMonday(new Date(year, 11, 25));
+}
+
+export function getBoxingDayAdditional(year) {
+    const origDate = getBoxingDay(year);
+    var isOnSundayOrMonday = origDate.getDay() == 0 || origDate.getDay() == 1;
+    var date = adjustWeekendToMonday(origDate);
+    // shift forward one (sometimes to mobday) if boxing day falls on Sunday or Monday
+    if (isOnSundayOrMonday) {
+        date.setDate(date.getDate() + 1);
+    }
+    return date;
+}
+
+export function getBoxingDay(year) {
+    return new Date(year, 11, 26);
+}
+
 
 

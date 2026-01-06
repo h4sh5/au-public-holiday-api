@@ -43,5 +43,15 @@ testDate(ausHolidays.getEasterSunday(2026), new Date(2026, 3, 5));
 testDate(ausHolidays.getEasterMonday(2025), new Date(2025, 3, 21));
 testDate(ausHolidays.getGoodFriday(2026), new Date(2026, 3, 3));
 testDate(ausHolidays.getGoodFriday(2028), new Date(2028, 3, 14));
+// Xmas
+testDate(ausHolidays.getChristmas(2025), new Date(2025, 11, 25));
+testDate(ausHolidays.getBoxingDay(2025), new Date(2025, 11, 26));
+testDate(ausHolidays.getChristmas(2026), new Date(2026, 11, 25));
+testDate(ausHolidays.getBoxingDay(2026), new Date(2026, 11, 26));
+testDate(ausHolidays.getBoxingDayAdditional(2026), new Date(2026, 11, 28));
+testDate(ausHolidays.getBoxingDay(2029), new Date(2029, 11, 26));
+// same as Boxing Day as there's no additional one
+testDate(ausHolidays.getBoxingDayAdditional(2029), new Date(2029, 11, 26));
+
 
 console.log("All tests passed")
