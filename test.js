@@ -52,6 +52,11 @@ testDate(ausHolidays.getBoxingDayAdditional(2026), new Date(2026, 11, 28));
 testDate(ausHolidays.getBoxingDay(2029), new Date(2029, 11, 26));
 // same as Boxing Day as there's no additional one
 testDate(ausHolidays.getBoxingDayAdditional(2029), new Date(2029, 11, 26));
+// ---
+testDate(ausHolidays.getMelbourneCup(2025), new Date(2025, 10, 4));
+testDate(ausHolidays.getMelbourneCup(2026), new Date(2026, 10, 3));
+testDate(ausHolidays.getBankHoliday(2026), new Date(2026, 7, 3));
+testDate(ausHolidays.getBankHoliday(2025), new Date(2025, 7, 4));
 
 
 console.log("All tests passed")

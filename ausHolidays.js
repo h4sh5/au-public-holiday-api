@@ -120,5 +120,14 @@ export function getBoxingDay(year) {
     return new Date(year, 11, 26);
 }
 
+export function getMelbourneCup(year) {
+    // (only in most of VIC)
+    // first Tuesday of November 
+    return findNextDayOfWeek(new Date(year, 10, 1), 2);
+}
 
+export function getBankHoliday(year) {
+    // NSW banking and financial services only, first Monday of August
+    return findNextDayOfWeek(new Date(year, 7, 1), 1);
 
+}
