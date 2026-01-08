@@ -1,4 +1,4 @@
-// can be run front end or back end; if no assertion failure, then all tests passed
+// can be run frontend (in browser) or backend (bun/node); if no errors raised, then all tests passed
 
 import * as ausHolidays from './ausHolidays.js';
 
@@ -52,11 +52,17 @@ testDate(ausHolidays.getBoxingDayAdditional(2026), new Date(2026, 11, 28));
 testDate(ausHolidays.getBoxingDay(2029), new Date(2029, 11, 26));
 // same as Boxing Day as there's no additional one
 testDate(ausHolidays.getBoxingDayAdditional(2029), new Date(2029, 11, 26));
-// ---
+// --- regional holidays ----
+// --- VIC ---
 testDate(ausHolidays.getMelbourneCup(2025), new Date(2025, 10, 4));
 testDate(ausHolidays.getMelbourneCup(2026), new Date(2026, 10, 3));
+// --- NSW ---
 testDate(ausHolidays.getBankHoliday(2026), new Date(2026, 7, 3));
 testDate(ausHolidays.getBankHoliday(2025), new Date(2025, 7, 4));
-
+// --- ACT ---
+testDate(ausHolidays.getReconciliationDay(2024), new Date(2024, 4, 27));
+testDate(ausHolidays.getReconciliationDay(2025), new Date(2025, 5, 2));
+testDate(ausHolidays.getReconciliationDay(2026), new Date(2026, 5, 1));
+testDate(ausHolidays.getReconciliationDay(2027), new Date(2027, 4, 31));
 
 console.log("All tests passed")

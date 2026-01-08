@@ -131,3 +131,12 @@ export function getBankHoliday(year) {
     return findNextDayOfWeek(new Date(year, 7, 1), 1);
 
 }
+
+export function getReconciliationDay(year) {
+    // first day of the national reconciliation week (27 May to 3 June)
+    // if it doesn't fall on a Monday, it's the following Monday
+    var date = findNextDayOfWeek(new Date(year, 4, 27), 1);
+    return date;
+}
+
+
