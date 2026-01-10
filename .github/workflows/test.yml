@@ -1,0 +1,24 @@
+name: Run tests
+
+on: 
+  #push 
+  workflow_dispatch: # this is a nice option that will enable a button w/ inputs
+    inputs:
+      git-ref:
+        description: Git Ref (Optional)    
+        required: false
+  push:
+
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout repo content
+      uses: actions/checkout@v2 # checkout the repository content to github runner.
+    - name: setup bun
+      uses: oven-sh/setup-bun@v2
+        
+    - name: run tests
+      #shell: bash
+      run: bun test.js

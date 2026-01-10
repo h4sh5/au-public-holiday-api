@@ -66,7 +66,7 @@ export function getAnzacDay(year, state) {
 }
 
 export function getAustraliaDay(year) {
-    return new Date(year, 0, 26);
+    return adjustWeekendToMonday(new Date(year, 0, 26));
 }
 
 export function getEasterSunday(year) {
