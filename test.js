@@ -64,5 +64,7 @@ testDate(ausHolidays.getReconciliationDay(2024), new Date(2024, 4, 27));
 testDate(ausHolidays.getReconciliationDay(2025), new Date(2025, 5, 2));
 testDate(ausHolidays.getReconciliationDay(2026), new Date(2026, 5, 1));
 testDate(ausHolidays.getReconciliationDay(2027), new Date(2027, 4, 31));
+testDate(ausHolidays.getCanberraDay(2025), new Date(2025, 2, 10));
+testDate(ausHolidays.getCanberraDay(2027), new Date(2027, 2, 8));
 
 console.log("All tests passed")

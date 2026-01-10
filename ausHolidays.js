@@ -139,4 +139,12 @@ export function getReconciliationDay(year) {
     return date;
 }
 
+export function getCanberraDay(year) {
+    // second monday in march, only in ACT
+    // find first monday, then + 7
+    var date = findNextDayOfWeek(new Date(year, 2, 1), 1);
+    date.setDate(date.getDate() + 7);
+    return date;
+}
+
 
