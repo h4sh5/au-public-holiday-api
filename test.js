@@ -67,5 +67,8 @@ testDate(ausHolidays.getReconciliationDay(2026), new Date(2026, 5, 1));
 testDate(ausHolidays.getReconciliationDay(2027), new Date(2027, 4, 31));
 testDate(ausHolidays.getCanberraDay(2025), new Date(2025, 2, 10));
 testDate(ausHolidays.getCanberraDay(2027), new Date(2027, 2, 8));
+// --- WA ---
+testDate(ausHolidays.getWesternAustraliaDay(2025), new Date(2025, 5, 2));
+testDate(ausHolidays.getWesternAustraliaDay(2027), new Date(2027, 5, 7));
 
 console.log("All tests passed")

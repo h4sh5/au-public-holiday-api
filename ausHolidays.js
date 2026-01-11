@@ -147,4 +147,9 @@ export function getCanberraDay(year) {
     return date;
 }
 
+export function getWesternAustraliaDay(year) {
+    // WA only, first Monday of June
+    var date = findNextDayOfWeek(new Date(year, 5, 1), 1);
+    return date;
+}
 
