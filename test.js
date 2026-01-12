@@ -70,5 +70,8 @@ testDate(ausHolidays.getCanberraDay(2027), new Date(2027, 2, 8));
 // --- WA ---
 testDate(ausHolidays.getWesternAustraliaDay(2025), new Date(2025, 5, 2));
 testDate(ausHolidays.getWesternAustraliaDay(2027), new Date(2027, 5, 7));
+// --- NT ---
+testDate(ausHolidays.getPicnicDay(2025), new Date(2025, 7, 4));
+testDate(ausHolidays.getPicnicDay(2028), new Date(2028, 7, 7));
 
 console.log("All tests passed")

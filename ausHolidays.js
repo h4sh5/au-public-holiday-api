@@ -153,3 +153,7 @@ export function getWesternAustraliaDay(year) {
     return date;
 }
 
+export function getPicnicDay(year) {
+    // NT only, first Monday of August
+    return findNextDayOfWeek(new Date(year, 7, 1), 1);
+}
