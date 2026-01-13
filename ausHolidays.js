@@ -9,6 +9,17 @@ export function findNextDayOfWeek(date, dayofweek) {
     return findNextDayOfWeek(date, dayofweek);
 }
 
+export function findPreviousDayOfWeek(date, dayofweek) {
+    // find the previous "day of week" e.g. the last Monday
+    // dayofweek: Sunday - Saturday : 0 - 6
+    if (date.getDay() == dayofweek) {
+        return date;
+    } 
+    // recursion
+    date.setDate(date.getDate() - 1);
+    return findPreviousDayOfWeek(date, dayofweek);
+}
+
 // in some cases, holidays that fall on Sunday (and only Sunday) are adjusted to monday
 export function adjustSundayToMonday(date) {
     if (date.getDay() == 0) { // Sunday
@@ -156,4 +167,26 @@ export function getWesternAustraliaDay(year) {
 export function getPicnicDay(year) {
     // NT only, first Monday of August
     return findNextDayOfWeek(new Date(year, 7, 1), 1);
+}
+
+
+export function getKingsBirthday(year, state) {
+    // the Queen is dead, long live the Queen!
+
+    if (state == "WA") {
+        // last Monday of September or first Monday of October
+        // usually in September so we stick with that as there's no set rule
+        return findPreviousDayOfWeek(new Date(year, 8, 30), 1);
+    }
+    else if (state == "QLD") {
+        // first Monday in October
+        return findNextDayOfWeek(new Date(year, 9, 1), 1);
+    }
+    else {
+        // second Monday in June
+        var date = findNextDayOfWeek(new Date(year, 5, 1), 1);
+        // add 7 days to first Monday in June
+        date.setDate(date.getDate() + 7);
+        return date;
+    }
 }

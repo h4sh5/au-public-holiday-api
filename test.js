@@ -74,4 +74,10 @@ testDate(ausHolidays.getWesternAustraliaDay(2027), new Date(2027, 5, 7));
 testDate(ausHolidays.getPicnicDay(2025), new Date(2025, 7, 4));
 testDate(ausHolidays.getPicnicDay(2028), new Date(2028, 7, 7));
 
+// King's Birthday
+testDate(ausHolidays.getKingsBirthday(2026, "QLD"), new Date(2026, 9, 5));
+testDate(ausHolidays.getKingsBirthday(2027, "WA"), new Date(2027, 8, 27));
+testDate(ausHolidays.getKingsBirthday(2026, "WA"), new Date(2026, 8, 28));
+testDate(ausHolidays.getKingsBirthday(2026, "NSW"), new Date(2026, 5, 8));
+testDate(ausHolidays.getKingsBirthday(2028, "VIC"), new Date(2028, 5, 12));
 console.log("All tests passed")
