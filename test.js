@@ -11,6 +11,13 @@ function testDate(date1, date2) {
     }
 }
 
+function testPublicHoliday(date, state, holidayName) {
+    const holidayResult = ausHolidays.getPublicHolidayFromDate(date, state);
+    if (holidayResult != holidayName) {
+        throw new Error(`Test failed: ${date} should be ${holidayName}, not ${holidayResult}`);
+    }
+}
+
 // month Jan-Dec is number 0-11 
 
 testDate(ausHolidays.adjustWeekendToMonday(new Date(2026, 2, 7)), new Date(2026, 2, 9));
@@ -80,4 +87,10 @@ testDate(ausHolidays.getKingsBirthday(2027, "WA"), new Date(2027, 8, 27));
 testDate(ausHolidays.getKingsBirthday(2026, "WA"), new Date(2026, 8, 28));
 testDate(ausHolidays.getKingsBirthday(2026, "NSW"), new Date(2026, 5, 8));
 testDate(ausHolidays.getKingsBirthday(2028, "VIC"), new Date(2028, 5, 12));
+
+// get public holiday test
+testPublicHoliday(new Date(2025, 0, 1), "ACT", "New Year's Day");
+testPublicHoliday(new Date(2026, 3, 25), "QLD", "ANZAC Day");
+testPublicHoliday(new Date(2026, 3, 6), "ACT", "Easter Monday");
+testPublicHoliday(new Date(2026, 2, 9), "VIC", "Labour Day");
 console.log("All tests passed")

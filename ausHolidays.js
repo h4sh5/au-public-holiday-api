@@ -190,3 +190,54 @@ export function getKingsBirthday(year, state) {
         return date;
     }
 }
+
+// return if date1 is the same as date2
+export function datesMatch(date1, date2) {
+    return date1.getTime() == date2.getTime();
+}
+
+/**
+ * date: a Date object
+ * state: all-caps initials of a state, e.g. "NSW" or "QLD"'
+ * return: public holiday name, or null
+ **/
+export function getPublicHolidayFromDate(date, state) {
+    const year = date.getFullYear();
+    const month = date.getMonth(); // 0-11 Jan-Dec
+    if (month == 0) { // January
+        if (datesMatch(getNewYearsDay(year), date)) {
+            return "New Year's Day";
+        }
+        if (datesMatch(getAustraliaDay(year), date)) {
+            return "Australia Day";
+        }
+    }
+    if (month == 2 || month == 3) { // March / April
+
+        if (datesMatch(getGoodFriday(year, state), date)) {
+            return "Good Friday";
+        }
+
+        if (datesMatch(getEasterMonday(year, state), date)) {
+            return "Easter Monday";
+        }
+
+        if (datesMatch(getAnzacDay(year, state), date)) {
+            return "ANZAC Day";
+        }
+
+
+        if (state == "TAS" || state == "WA" || state == "VIC") {
+            if (datesMatch(getLabourDay(year, state), date)) {
+                return "Labour Day";
+            }
+        }
+        if (state == "ACT") {
+            if (datesMatch(getCanberraDay(year, state), date)) {
+                return "Canberra Day";
+            }
+        }
+
+    }
+
+}
