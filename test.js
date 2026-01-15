@@ -90,7 +90,33 @@ testDate(ausHolidays.getKingsBirthday(2028, "VIC"), new Date(2028, 5, 12));
 
 // get public holiday test
 testPublicHoliday(new Date(2025, 0, 1), "ACT", "New Year's Day");
+testPublicHoliday(new Date(2026, 0, 26), "NSW", "Australia Day");
 testPublicHoliday(new Date(2026, 3, 25), "QLD", "ANZAC Day");
+testPublicHoliday(new Date(2027, 2, 26), "VIC", "Good Friday");
 testPublicHoliday(new Date(2026, 3, 6), "ACT", "Easter Monday");
+testPublicHoliday(new Date(2028, 3, 16), "QLD", "Easter Sunday");
 testPublicHoliday(new Date(2026, 2, 9), "VIC", "Labour Day");
+testPublicHoliday(new Date(2026, 2, 9), "ACT", "Canberra Day");
+testPublicHoliday(new Date(2026, 2, 9), "QLD", null);
+testPublicHoliday(new Date(2026, 5, 1), "ACT", "Reconciliation Day");
+testPublicHoliday(new Date(2026, 5, 1), "WA", "Western Australia Day");
+testPublicHoliday(new Date(2026, 5, 1), "QLD", null);
+testPublicHoliday(new Date(2026, 5, 8), "NSW", "King's Birthday");
+testPublicHoliday(new Date(2026, 7, 3), "NSW", "Bank Holiday (NSW)");
+testPublicHoliday(new Date(2026, 7, 3), "QLD", null);
+testPublicHoliday(new Date(2026, 7, 3), "NT", "Picnic Day");
+testPublicHoliday(new Date(2026, 7, 3), "QLD", null);
+testPublicHoliday(new Date(2026, 9, 5), "QLD", "King's Birthday");
+testPublicHoliday(new Date(2028, 9, 2), "QLD", "King's Birthday");
+testPublicHoliday(new Date(2026, 10, 3), "VIC", "Melbourne Cup");
+testPublicHoliday(new Date(2026, 10, 3), "QLD", null);
+testPublicHoliday(new Date(2026, 11, 25), "NSW", "Christmas Day");
+testPublicHoliday(new Date(2026, 11, 25), "QLD", "Christmas Day");
+testPublicHoliday(new Date(2026, 11, 25), "TAS", "Christmas Day");
+testPublicHoliday(new Date(2026, 11, 26), "NSW", "Boxing Day");
+testPublicHoliday(new Date(2026, 11, 26), "QLD", "Boxing Day");
+testPublicHoliday(new Date(2026, 11, 26), "TAS", "Boxing Day");
+testPublicHoliday(new Date(2026, 11, 28), "NSW", "Boxing Day Additional Public Holiday");
+testPublicHoliday(new Date(2026, 11, 28), "QLD", "Boxing Day Additional Public Holiday");
+testPublicHoliday(new Date(2026, 11, 28), "TAS", "Boxing Day Additional Public Holiday");
 console.log("All tests passed")

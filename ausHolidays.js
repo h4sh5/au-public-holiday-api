@@ -203,41 +203,74 @@ export function datesMatch(date1, date2) {
  **/
 export function getPublicHolidayFromDate(date, state) {
     const year = date.getFullYear();
-    const month = date.getMonth(); // 0-11 Jan-Dec
-    if (month == 0) { // January
-        if (datesMatch(getNewYearsDay(year), date)) {
-            return "New Year's Day";
-        }
-        if (datesMatch(getAustraliaDay(year), date)) {
-            return "Australia Day";
-        }
+
+    if (datesMatch(getNewYearsDay(year), date)) {
+        return "New Year's Day";
     }
-    if (month == 2 || month == 3) { // March / April
-
-        if (datesMatch(getGoodFriday(year, state), date)) {
-            return "Good Friday";
-        }
-
-        if (datesMatch(getEasterMonday(year, state), date)) {
-            return "Easter Monday";
-        }
-
-        if (datesMatch(getAnzacDay(year, state), date)) {
-            return "ANZAC Day";
-        }
-
-
-        if (state == "TAS" || state == "WA" || state == "VIC") {
-            if (datesMatch(getLabourDay(year, state), date)) {
-                return "Labour Day";
-            }
-        }
-        if (state == "ACT") {
-            if (datesMatch(getCanberraDay(year, state), date)) {
-                return "Canberra Day";
-            }
+    if (datesMatch(getAustraliaDay(year), date)) {
+        return "Australia Day";
+    }
+    if (datesMatch(getGoodFriday(year), date)) {
+        return "Good Friday";
+    }
+    if (datesMatch(getEasterMonday(year, state), date)) {
+        return "Easter Monday";
+    }
+    if (datesMatch(getEasterSunday(year), date)) {
+        return "Easter Sunday";
+    }
+    if (datesMatch(getAnzacDay(year, state), date)) {
+        return "ANZAC Day";
+    }
+    if (datesMatch(getLabourDay(year, state), date)) {
+            return "Labour Day";
+    }
+    if (datesMatch(getKingsBirthday(year, state), date)) {
+        return "King's Birthday";
+    }
+    if (state == "ACT") {
+        if (datesMatch(getCanberraDay(year), date)) {
+            return "Canberra Day";
+        } 
+        if (datesMatch(getReconciliationDay(year, state), date)) {
+            return "Reconciliation Day";
         }
 
     }
+    // unfortunately Ekka is a Brisbane only holiday so it's not state wide for QLD, therefore not included
 
+    if (state == "NSW") {
+        if (datesMatch(getBankHoliday(year), date)) {
+            return "Bank Holiday (NSW)";
+        }
+    }
+    if (state == "NT") {
+        if (datesMatch(getPicnicDay(year), date)) {
+            return "Picnic Day";
+        } 
+    }
+
+    if (state == "VIC") {
+        if (datesMatch(getMelbourneCup(year), date)) {
+            return "Melbourne Cup";
+        }
+    }
+
+    if (state == "WA") {
+        if (datesMatch(getWesternAustraliaDay(year), date)) {
+            return "Western Australia Day";
+        }
+    }
+     
+    if (datesMatch(getChristmas(year), date)) {
+        return "Christmas Day";
+    }
+    if (datesMatch(getBoxingDay(year), date)) {
+        return "Boxing Day";
+    }
+    if (datesMatch(getBoxingDayAdditional(year), date)) {
+        return "Boxing Day Additional Public Holiday";
+    }
+
+    return null;
 }
