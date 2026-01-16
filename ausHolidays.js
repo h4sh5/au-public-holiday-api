@@ -191,9 +191,9 @@ export function getKingsBirthday(year, state) {
     }
 }
 
-// return if date1 is the same as date2
+// return if date1 is on the same day as date2; ignore time
 export function datesMatch(date1, date2) {
-    return date1.getTime() == date2.getTime();
+    return (date1.getFullYear() == date2.getFullYear() && date1.getMonth() == date2.getMonth() && date1.getDate() == date2.getDate())
 }
 
 /**
