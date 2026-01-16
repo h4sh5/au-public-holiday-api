@@ -1,8 +1,6 @@
 # AU Public Holidays
 
-**Currently WIP.**
-
 JS Library for calculating Australian public holidays. 
 
-Eventually might be turned into an API that can be queried.
+See GitHub pages URL for a frontend demo that shows AU public holidays with a date picker.
 

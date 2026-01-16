@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Aus Public Holidays</title>
+	<!-- <script type=module src=ausHolidays.js></script> -->
+	<style type=text/css>
+
+	</style>
+
+</head>
+
+
+<body>
+
+<h2>Australian State Public Holidays today:</h2>
+<div id=todaybox></div>
+
+<p><label for=date>Date:</label> <input id=datepicker type=date /> <button id=checkbutton>Check Public Holidays for AU States</button></p>
+<div id=checkresultbox></div>
+
+
+<script type=module>
+
+// import { Test } from "./testmodule.js";
+import * as ausHolidays from './ausHolidays.js';
+
+const today = new Date();
+const states = new Array("NSW","QLD","VIC","ACT","TAS","NT","WA","SA");
+
+var todayHolidaysByState = {};
+
+for (var state of states) {
+	console.log(`today: ${today} ${state}`);
+	const pubHoliday = ausHolidays.getPublicHolidayFromDate(today, state);
+	todayHolidaysByState[state] = pubHoliday;
+}
+
+
+document.getElementById("todaybox").innerText = "";
+
+Object.keys(todayHolidaysByState).forEach((state, index)=> {
+	var hol = todayHolidaysByState[state]
+	console.log(`today ${state}: ${hol}}`)
+	if (hol == null) {
+		hol = "N/A";
+	}
+	document.getElementById("todaybox").innerText += `${state}: ${hol}\n`;
+});
+
+document.getElementById("checkbutton").onclick = (event) => {
+	document.getElementById("checkresultbox").innerText = "";
+	var checkedHolidaysByState = {};
+	const dateToCheck = new Date(document.getElementById("datepicker").value);
+	console.log(`checking date: ${dateToCheck}`);
+
+
+	for (var state of states) {
+		const pubHoliday = ausHolidays.getPublicHolidayFromDate(dateToCheck, state);
+		checkedHolidaysByState[state] = pubHoliday;
+
+	}
+
+	Object.keys(checkedHolidaysByState).forEach((state, index)=> {
+		var hol = checkedHolidaysByState[state];
+		console.log(`check results: ${state}: ${hol}}`)
+		if (hol == null) {
+			hol = "N/A";
+		}
+		document.getElementById("checkresultbox").innerText += `${state}: ${hol}\n`;
+	});
+
+}
+
+</script>
+</body>
+</html>
