@@ -1,0 +1,40 @@
+name: Generate today's holiday JSON blob
+
+on: 
+  #push 
+  workflow_dispatch: # this is a nice option that will enable a button w/ inputs
+    inputs:
+      git-ref:
+        description: Git Ref (Optional)    
+        required: false
+  schedule:
+    cron: '0 14 * * *' # every day at 2PM UTC (AEST 0 o'clock)
+
+
+jobs:
+  generate-json:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout repo content
+      uses: actions/checkout@v2 # checkout the repository content to github runner.
+    - name: setup bun
+      uses: oven-sh/setup-bun@v2
+        
+    - name: run script
+      #shell: bash
+      run: bun generateJson.js > api.json
+
+
+    - name: Push new data
+      run: |
+
+        git config --global user.name 'aus holidays api bot'
+        git config --global user.email 'holidays-bot@localhost'
+        git config --global branch.autoSetupMerge always
+        git config --global core.mergeoptions --no-edit
+        git config --global pull.rebase false
+
+        git add api.json
+        git commit -m "holidays update"
+        git pull
+        git push
