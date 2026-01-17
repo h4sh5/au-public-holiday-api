@@ -1,4 +1,4 @@
-name: Generate today's holiday JSON blob
+name: Generate public holiday JSON blob
 
 on: 
   #push 
