@@ -6,6 +6,25 @@
 	<title>Aus Public Holidays</title>
 	<!-- <script type=module src=ausHolidays.js></script> -->
 	<style type=text/css>
+		* {
+			font-family: sans-serif;
+		}
+
+		#header {
+			background: #012169;
+			color: white;
+			padding-top: 1em;
+			padding-bottom: 1em;
+			padding-left: 1em;
+		}
+		th,td {
+		  border: 1px solid rgb(160 160 160);
+		  padding: 2px 8px;
+		}
+
+		td:last-of-type {
+		  text-align: center;
+		}
 
 	</style>
 
@@ -14,11 +33,17 @@
 
 <body>
 
-<h2>Australian State Public Holidays today:</h2>
-<div id=todaybox></div>
+<section id=header>
+<h2>Australian State Public Holidays</h2>
+</section>
+
+<div>
+	<h3 id=today>Today</h3>
+	<table id=todaytable></table>
+</div>
 
 <p><label for=date>Date:</label> <input id=datepicker type=date /> <button id=checkbutton>Check Public Holidays for AU States</button></p>
-<div id=checkresultbox></div>
+<table id=checkresults></tab;e>
 
 
 <script type=module>
@@ -27,6 +52,9 @@
 import * as ausHolidays from './ausHolidays.js';
 
 const today = new Date();
+
+document.getElementById('today').innerText += ` (${today.getFullYear()}/${today.getMonth()+1}/${today.getDate()})`;
+
 const states = new Array("NSW","QLD","VIC","ACT","TAS","NT","WA","SA");
 
 var todayHolidaysByState = {};
@@ -38,19 +66,19 @@ for (var state of states) {
 }
 
 
-document.getElementById("todaybox").innerText = "";
+document.getElementById("todaytable").innerHTML = "<thead><th>State</th><th>Holiday</th></thead>";
 
 Object.keys(todayHolidaysByState).forEach((state, index)=> {
 	var hol = todayHolidaysByState[state]
-	console.log(`today ${state}: ${hol}}`)
+	console.log(`today ${state}: ${hol}`)
 	if (hol == null) {
 		hol = "N/A";
 	}
-	document.getElementById("todaybox").innerText += `${state}: ${hol}\n`;
+	document.getElementById("todaytable").innerHTML += `<tr><td>${state}</td><td>${hol}</td></tr>`;
 });
 
 document.getElementById("checkbutton").onclick = (event) => {
-	document.getElementById("checkresultbox").innerText = "";
+	document.getElementById("checkresults").innerHTML = "<thead><th>State</th><th>Holiday</th></thead>";
 	var checkedHolidaysByState = {};
 	const dateToCheck = new Date(document.getElementById("datepicker").value);
 	console.log(`checking date: ${dateToCheck}`);
@@ -64,11 +92,11 @@ document.getElementById("checkbutton").onclick = (event) => {
 
 	Object.keys(checkedHolidaysByState).forEach((state, index)=> {
 		var hol = checkedHolidaysByState[state];
-		console.log(`check results: ${state}: ${hol}}`)
+		console.log(`check results: ${state}: ${hol}`)
 		if (hol == null) {
 			hol = "N/A";
 		}
-		document.getElementById("checkresultbox").innerText += `${state}: ${hol}\n`;
+		document.getElementById("checkresults").innerHTML += `<tr><td>${state}</td><td>${hol}</td></tr>`;
 	});
 
 }
